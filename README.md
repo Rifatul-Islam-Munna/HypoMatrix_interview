@@ -113,42 +113,41 @@ curl -s -X POST http://localhost:3000/api/v1/rooms/<roomId>/messages \
 
 ## Example socket io
 
-```
+```javascript
 import io from 'socket.io-client';
 
 const socket = io('/chat', {
-query: {
-token: '<sessionToken>', // Your auth token
-roomId: '<roomId>' // The room ID
-}
+  query: {
+    token: '<sessionToken>', // Your auth token
+    roomId: '<roomId>', // The room ID
+  },
 });
 
 socket.on('room:joined', (data) => {
-console.log('Joined room with active users:', data.activeUsers);
+  console.log('Joined room with active users:', data.activeUsers);
 });
 
 socket.on('message:new', (message) => {
-console.log('New message:', message);
-// message structure: { id, username, content, createdAt }
+  console.log('New message:', message);
+  // message structure: { id, username, content, createdAt }
 });
 
 socket.on('room:user_joined', (data) => {
-console.log(`${data.username} joined, active users:`, data.activeUsers);
+  console.log(`${data.username} joined, active users:`, data.activeUsers);
 });
 
 socket.on('room:user_left', (data) => {
-console.log(`${data.username} left, active users:`, data.activeUsers);
+  console.log(`${data.username} left, active users:`, data.activeUsers);
 });
 
 socket.on('room:deleted', (data) => {
-console.log(`Room ${data.roomId} deleted`);
-socket.disconnect();
+  console.log(`Room ${data.roomId} deleted`);
+  socket.disconnect();
 });
 
 socket.on('connect_error', (error) => {
-console.error('Connection failed:', error.message);
+  console.error('Connection failed:', error.message);
 });
-
 ```
 
 Every REST success:
