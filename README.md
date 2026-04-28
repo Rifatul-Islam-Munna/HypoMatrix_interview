@@ -113,6 +113,7 @@ curl -s -X POST http://localhost:3000/api/v1/rooms/<roomId>/messages \
 
 ## Example socket io
 
+```
 import io from 'socket.io-client';
 
 const socket = io('/chat', {
@@ -148,12 +149,13 @@ socket.on('connect_error', (error) => {
 console.error('Connection failed:', error.message);
 });
 
-````
+```
+
 Every REST success:
 
 ```json
 { "success": true, "data": {} }
-````
+```
 
 Every REST error:
 
